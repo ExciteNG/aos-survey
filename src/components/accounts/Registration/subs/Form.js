@@ -176,7 +176,7 @@ export default function Form() {
             <div className='col-lg-4'>
             {!permitFb && typeof window !== 'undefined'?
             <FacebookLogin
-              appId={process.env.FB_APPID}
+              appId={process.env.REACT_APP_FB_APPID}
               autoLoad={true}
               fields="name,email,picture,friends"
               edge="accounts"
