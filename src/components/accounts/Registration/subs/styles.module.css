@@ -1,0 +1,8 @@
+.header {
+  background-image: url("./../../../asset/img/world map.png");
+  background-position: center;
+  -o-object-fit: contain;
+     object-fit: contain;
+  padding: 50px 0;
+}
+/*# sourceMappingURL=styles.module.css.map */

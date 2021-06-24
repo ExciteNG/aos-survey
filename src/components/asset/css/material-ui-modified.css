@@ -1,0 +1,32 @@
+.MuiInput-underline::after{
+border-bottom: 2px solid #a7cc48 !important;
+}
+.MuiFormLabel-root.Mui-focused{
+color: #888 !important;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+border-color: #a7cc48 !important;
+
+}
+
+.MuiStepIcon-root.MuiStepIcon-active,.MuiStepIcon-root.MuiStepIcon-completed{
+color: #a7cc48 !important;
+
+}
+.MuiButton-containedPrimary{
+    background-color: #a7cc48 !important;
+}
+
+.check-wrap .MuiCheckbox-root{
+  color: #fff !important;
+}
+
+
+
+@media screen and (max-width:600px){
+    .MuiStepper-horizontal{
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+}
