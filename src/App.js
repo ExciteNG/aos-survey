@@ -1,5 +1,5 @@
 import './App.css';
-import {Switch,Route, Redirect} from "react-router-dom";
+import {Switch,Route} from "react-router-dom";
 import Home from "./components/Landing/Index";
 import Account from "./components/accounts/Index";
 import ApiLoader from './utility/ApiLoader';
