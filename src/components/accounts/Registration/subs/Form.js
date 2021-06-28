@@ -116,7 +116,7 @@ export default function Form() {
         "/auth/influencer-marketer/sign-up",
         data
       );
-      dispatch(loadStart())
+      dispatch(loadStop())
       if(response.data.code===401) return Flash('error','Email already in use','',3000);
       if(response.data.code===201) return Flash('success','Account created successfully','',3000)
       console.log(response.data);
