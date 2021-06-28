@@ -22,9 +22,11 @@ import FacebookLogin from "react-facebook-login";
 // import SocialLoginComponent from "../../../../utility/SocialLoginComponent";
 import useAxios from "../../../../utility/axios-token-manager/init";
 import Flash from "../../../../utility/Flash";
-
+import { loadStart,loadStop } from "../../../../redux/actions/loading";
+import { useDispatch } from "react-redux";
 //
 export default function Form() {
+  const dispatch = useDispatch()
   const [country, setCountry] = useState(allCountries()[0]);
 
   //coverage
@@ -107,17 +109,20 @@ export default function Form() {
       ...inputs,
       mobile: `${getCountryDial_Code(inputs.country)} ${inputs.mobile}`,
     };
+    dispatch(loadStart())
     // console.log(data);
     try {
       const response = await useAxios.post(
         "/auth/influencer-marketer/sign-up",
         data
       );
+      dispatch(loadStart())
       if(response.data.code===401) return Flash('error','Email already in use','',3000);
       if(response.data.code===201) return Flash('success','Account created successfully','',3000)
       console.log(response.data);
     } catch (error) {
       console.log(error);
+      dispatch(loadStop())
       return Flash('error','Network/Server error','',3000);
     }
   };
