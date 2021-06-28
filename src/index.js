@@ -11,6 +11,10 @@ import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from './utility/theme'
+import 'react-notifications/dist/react-notifications.css'
+import "./sidebar.css";
+import './components/asset/css/usersidebar.css'
+
 // 
 const store = configureStore();
 

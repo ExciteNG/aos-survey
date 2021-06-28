@@ -3,7 +3,9 @@ import Form from "./subs/Form";
 import Header from "./subs/Header";
 import Footer from "./../../layout/Footer";
 
-export default function Register() {
+
+export default function Register({match}) {
+ 
   return (
     <>
       <Header />

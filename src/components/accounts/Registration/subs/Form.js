@@ -6,7 +6,7 @@ import {
   InputAdornment,
   Radio,
   Button,
-  Avatar
+  Avatar,
 } from "@material-ui/core";
 import {
   allCountries,
@@ -19,7 +19,10 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
 import FacebookLogin from "react-facebook-login";
+// import SocialLoginComponent from "../../../../utility/SocialLoginComponent";
+import useAxios from "../../../../utility/axios-token-manager/init";
 
+//
 export default function Form() {
   const [country, setCountry] = useState(allCountries()[0]);
 
@@ -34,6 +37,8 @@ export default function Form() {
       newChecked.splice(currentIndex, 1);
     }
     setCoverage(newChecked);
+    inputs.coverage = [...newChecked];
+    setInputs({ ...inputs });
   };
   //socials
   const [socials, setSocials] = React.useState([]);
@@ -46,18 +51,22 @@ export default function Form() {
       newChecked.splice(currentIndex, 1);
     }
     setSocials(newChecked);
+    inputs.socialMedialPlatform = [...newChecked];
+    setInputs({ ...inputs });
   };
   // negotiable
   const [negotiable, setNegotiable] = React.useState(null);
   const handleNegotiable = (value) => {
     setNegotiable(value);
+    inputs.negotiable = value;
+    setInputs({ ...inputs });
   };
 
   // connect fb
   const [permitFb, setPermitFb] = useState(false);
   const [userFB, setUserFB] = useState({ name: "", img: "", friend: "" });
   const handleFBLogin = (e) => {
-    // console.log(e)
+    console.log(e);
     if (e.status === "unknown") {
       return console.log("rejected");
     }
@@ -67,6 +76,46 @@ export default function Form() {
     setUserFB({ name: name, img: img, friend: friend });
     setPermitFb(true);
     // console.log(name,img,friend)
+  };
+
+  const [inputs, setInputs] = useState({
+    fullName: "",
+    email: "",
+    mobile: "",
+    stateOfResidence: "",
+    socialMedialPlatform: [],
+    socialMediaHandles: { facebook: "", instagram: "", youtube: "" },
+    noOfFollowers: {},
+    influencerLevel: "",
+    amountPerPost: "",
+    country: country,
+    coverage: [],
+    marketingSpeciality: [],
+    negotiable: negotiable,
+    password: "",
+    password2: "",
+  });
+
+  const handleChange = (e) => {
+    inputs[e.target.name] = e.target.value;
+    setInputs({ ...inputs });
+  };
+
+  const handleSubmit = async () => {
+    const data = {
+      ...inputs,
+      mobile: `${getCountryDial_Code(inputs.country)} ${inputs.mobile}`,
+    };
+    console.log(data);
+    try {
+      const response = await useAxios.post(
+        "/auth/influencer-marketer/sign-up",
+        data
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -81,10 +130,24 @@ export default function Form() {
       <div>
         <div className="row">
           <div className="col-lg-12 mt-4 mb-3">
-            <TextField label="Fullname" fullWidth />
+            <TextField
+              label="Fullname"
+              fullWidth
+              name="fullName"
+              autoComplete="Off"
+              value={inputs.fullName}
+              onChange={handleChange}
+            />
           </div>
           <div className="col-lg-12 mb-3">
-            <TextField label="Email" fullWidth />
+            <TextField
+              label="Email"
+              fullWidth
+              name="email"
+              autoComplete="Off"
+              value={inputs.email}
+              onChange={handleChange}
+            />
           </div>
 
           <div className="col-lg-6 mb-3">
@@ -93,7 +156,11 @@ export default function Form() {
               fullWidth
               select
               value={country}
-              onChange={(e) => setCountry(e.target.value)}
+              name="country"
+              onChange={(e) => {
+                setCountry(e.target.value);
+                handleChange(e);
+              }}
             >
               {allCountries().map((country, index) => (
                 <MenuItem value={country} key={index}>
@@ -113,10 +180,22 @@ export default function Form() {
                   </InputAdornment>
                 ),
               }}
+              name="mobile"
+              autoComplete="Off"
+              value={inputs.mobile}
+              onChange={handleChange}
             />
           </div>
           <div className="col-lg-6 mb-3">
-            <TextField label="State of Residence" fullWidth select>
+            <TextField
+              label="State of Residence"
+              fullWidth
+              select
+              name="stateOfResidence"
+              autoComplete="Off"
+              value={inputs.stateOfResidence}
+              onChange={handleChange}
+            >
               {States(country).map((country, index) => (
                 <MenuItem value={country} key={index}>
                   {country}
@@ -172,36 +251,43 @@ export default function Form() {
             </List>
           </div>
           <div className="col-lg-12 row mb-4">
-            {socials.includes("Facebook") ? 
-            <div className='col-lg-4'>
-            {!permitFb && typeof window !== 'undefined'?
-            <FacebookLogin
-              appId={process.env.REACT_APP_FB_APPID}
-              autoLoad={true}
-              fields="name,email,picture,friends"
-              edge="accounts"
-              scope="public_profile,user_friends,pages_show_list"
-              callback={(e) => handleFBLogin(e)}
-              textButton="Connect Facebook"
-              cssClass="facebook-connect-btn"
-            />:""}
-            {permitFb ? (
-              <div className='social-profile-area'>
-                <Typography className='mb-2'>Facebook Profile</Typography>
-                <div className="d-flex">
-                  <div className="mr-2">
-                    <Avatar src={userFB.img}></Avatar>
+            {socials.includes("Facebook") ? (
+              <div className="col-lg-4">
+                {!permitFb && typeof window !== "undefined" ? (
+                  <FacebookLogin
+                    appId={process.env.REACT_APP_FB_APPID}
+                    autoLoad={true}
+                    fields="name,email,picture,friends"
+                    edge="accounts"
+                    scope="public_profile,user_friends,pages_show_list"
+                    callback={(e) => handleFBLogin(e)}
+                    textButton="Connect Facebook"
+                    cssClass="facebook-connect-btn"
+                  />
+                ) : (
+                  ""
+                )}
+                {permitFb ? (
+                  <div className="social-profile-area">
+                    <Typography className="mb-2">Facebook Profile</Typography>
+                    <div className="d-flex">
+                      <div className="mr-2">
+                        <Avatar src={userFB.img}></Avatar>
+                      </div>
+                      <div>
+                        <Typography variant="h6">{userFB.name}</Typography>
+                        <Typography>No of Friends: {userFB.friend}</Typography>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <Typography variant="h6">{userFB.name}</Typography>
-                    <Typography>No of Friends: {userFB.friend}</Typography>
-                  </div>
-                </div>
+                ) : (
+                  ""
+                )}
               </div>
             ) : (
               ""
-            )}</div>: ''}
-          </div> 
+            )}
+          </div>
           <div className="col-lg-4">
             <TextField
               label="How much do you charge per post ?"
@@ -214,6 +300,10 @@ export default function Form() {
                   </InputAdornment>
                 ),
               }}
+              name="amountPerPost"
+              autoComplete="Off"
+              value={inputs.amountPerPost}
+              onChange={handleChange}
             />
             <div className="mt-2">
               <Typography>Is it negotiable ?</Typography>
@@ -243,10 +333,26 @@ export default function Form() {
         <div className="row" style={{ marginTop: "20px" }}>
           <Typography className="col-lg-12">Create Password</Typography>
           <div className="col-lg-6">
-            <TextField label="Password" fullWidth type="password" />
+            <TextField
+              label="Password"
+              fullWidth
+              type="password"
+              name="password"
+              autoComplete="Off"
+              value={inputs.password}
+              onChange={handleChange}
+            />
           </div>
           <div className="col-lg-6">
-            <TextField label="Confirm Password" fullWidth type="password" />
+            <TextField
+              label="Confirm Password"
+              fullWidth
+              type="password"
+              name="password2"
+              autoComplete="Off"
+              value={inputs.password2}
+              onChange={handleChange}
+            />
           </div>
         </div>
         <div className="mb-4 mt-4 policy-disclaimer color-blur">
@@ -266,7 +372,9 @@ export default function Form() {
         <div style={{ marginTop: "40px", marginBottom: "40px" }}>
           <div className="row">
             <div className="col-lg-4 col-sm-12">
-              <Button className="w-100 bg-pry">Submit</Button>
+              <Button className="w-100 bg-pry" onClick={handleSubmit}>
+                Submit
+              </Button>
             </div>
           </div>
         </div>

@@ -17,3 +17,9 @@ export const signInSuccess = (token)=>{
         payload:token
     }
 }
+
+export const logOut = ()=>{
+    return{
+        type:"SIGN_OUT"
+    }
+}

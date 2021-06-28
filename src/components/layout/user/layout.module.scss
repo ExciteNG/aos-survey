@@ -1,0 +1,288 @@
+$primaryColor: #a7cc48;
+$bg: #2c2d3f;
+
+.layout{
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    // width: 100%;
+    .toolBarchildWrapper{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        // width: 80%;
+        .toolBarWrapper{
+            display: flex;
+            width: 100%;
+            position: relative;
+            z-index: 200;
+        }
+    }
+    .sideBarWrapper{
+        width: fit-content;
+        position: fixed;
+        z-index: 10;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: .3s;
+        z-index: 1000;
+    }
+    .open{
+        transform: translateX(0);
+    }
+}
+
+@media screen and (min-width:990px){
+    .layout{
+        .sideBarWrapper,.open{
+            position: static;
+            transform: translateX(0);
+        }
+    }
+}
+
+
+
+.sideBar{
+    width: 300px;
+    max-width: 85vw;
+    height: 100%;
+    background-color: rgba($color: $bg, $alpha: 1.0);
+    // background-image: url('/nav-bg.png');
+    background-position: center;
+    background-size: cover;
+    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    .sideToolbar{
+        background-color: $bg;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        height: 70px;
+        padding: 0 10px;
+        .togglerWrapper{
+            width: 30px;
+            margin-left: auto;   
+        }
+          
+    }
+    .navs{
+        flex: 1;
+        padding: 20px 10px;
+        overflow: auto;
+        .navItem{
+            display: flex;
+            flex-direction: column;
+            .navItemTag{
+                background:darken($color: $bg, $amount: 10);
+                text-transform: uppercase;
+                padding: 10px 10px;
+                color: #fff;
+            }
+            ul{
+                list-style: none;
+                padding: 0;
+                margin-left: 10px;
+                // padding-left: 10px;
+                // background-color: $primaryColor;
+                li{
+                    // background-color: darkgoldenrod;
+                    display: flex;
+                    margin-bottom: 20px;
+                    // border-left: 2px solid $primaryColor;
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+                    a{
+                        width: 100%;
+                        background-color: rgba($color: $bg, $alpha: .40);
+                        padding: 10px 10px;
+                        text-decoration: none;
+                        display: flex;
+                        transition: .3s linear;
+                        span{
+                            color: rgba($color: #fff, $alpha: .80);
+                        }
+                        i{
+                            color: $primaryColor;
+                            transition: .3s linear;
+
+                        }
+                    }
+                    &:hover{
+                        border-left: 2px solid $bg;
+
+                        a{
+                            background-color: $primaryColor;
+                            i{
+                                color: $bg;
+                            }
+                        }
+                    }
+                }
+                .active{
+                    background-color: $primaryColor;
+                    a{
+                        background-color: $primaryColor;
+                        i{
+                            color: $bg;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width:990px){
+    
+}
+
+
+
+
+
+//toolBar
+.toolBar{
+    // background: linear-gradient(to right, $bg, $primaryColor);
+    background: $bg;
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    display: flex;
+    .contents{
+        // padding: 0 20px;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .togglerWrapper{
+            width: 30px;
+            margin-left: auto;
+            // overflow: hidden;
+            .barToggler{
+                height: 2px;
+                width: 100%;
+                background-color: $primaryColor;
+                position: relative;
+                transition: .3s;
+                &::before{
+                    content: '';
+                    width: 100%;
+                    display: block;
+                    height: 100%;
+                    background-color: $primaryColor;
+                    position: absolute;
+                    bottom: 10px;
+                transition: .3s;
+
+                }
+                &::after{
+                    content: '';
+                    width: 100%;
+                    display: block;
+                    height: 100%;
+                    background-color: $primaryColor;
+                    position: absolute;
+                    top: 10px;
+                transition: .3s;
+                opacity: 1;
+
+                }
+            }
+            .barsTimes{
+                transform: translateX(-100%);
+                visibility: hidden;
+                background-color: $bg;
+                &::before{
+                    transform: translateX(100%) rotate(-45deg);
+                    bottom: 0;
+                    visibility: visible;
+    
+                }
+                &::after{
+                    transform: translateX(100%) rotate(45deg);
+                    visibility: visible;
+                    top: 0;
+                }
+            }
+        }
+        .signOutWrapper{
+            
+            color: #fff;
+            cursor: pointer;
+            background-color: $primaryColor;
+            padding: 5px 20px;
+        }
+        
+    }
+    .panel{
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background-color: rgba($color: $bg, $alpha: .80);
+        width: 100%;
+        height: 40px;
+        padding-right: 10px;
+        padding-left: 10px;
+        display: flex;
+        align-items: center;
+        z-index: 1000 !important;
+        .user{
+            i{
+                font-size: 24px;
+                color: $primaryColor;
+            }
+            span{
+                color: #fff;
+            }
+        }
+    }
+}
+
+@media screen and (min-width:990px){
+    .toolBar{
+    padding-right: 400px;
+    padding-left: 50px;
+    .contents{
+        .togglerWrapper{
+            visibility: hidden;
+            pointer-events: none;
+        }
+    }
+    .panel{
+        padding-right: 400px;
+    padding-left: 50px;
+    }
+    }
+    
+}
+
+.childrenWrapper{
+    // padding-top: 150px;
+    // padding-bottom: 50px;
+    flex: 1;
+    padding: 150px 10px 50px 10px;
+    background-color: #F0F0F0;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: 10px;
+      }
+      &::-webkit-scrollbar-track {
+        background: #2c2d3f;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #a7cc48;
+        border-radius: 5px !important;
+      }
+}
+@media screen and (min-width:990px){
+    .childrenWrapper{
+    padding: 150px 50px 50px 50px;
+
+    }
+}

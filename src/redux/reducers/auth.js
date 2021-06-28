@@ -23,7 +23,7 @@ const authReducer = (state = initialState, action) => {
         return  successUp(action.payload);
       case "SIGN_OUT_SUCCESS":
         return failLogin();
-      case "SIGN_OUT_COMPANY":
+      case "SIGN_OUT":
         localStorage.removeItem("user")
         return {
           ...state,auth:null,isLogged:false,token:null
