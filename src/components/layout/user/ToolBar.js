@@ -1,12 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import styles from "./layout.module.css";
 import {logOut} from './../../../redux/actions/auth'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import { Typography } from "@material-ui/core";
 
 
 
 export default function ToolBar({ user = "John Snow", toggler, state }) {
-
+const {userProfile} = useSelector(state => state.profile)
+// console.log(userProfile)
     const dispatch = useDispatch();
   const signOut=()=>{
     sessionStorage.removeItem('user')
@@ -43,10 +45,10 @@ export default function ToolBar({ user = "John Snow", toggler, state }) {
         </div>
       </div>
       <div className={styles.panel}>
-        <div className={styles.user}>
-          <span>
-            <i className="fa fa-user mr-4"></i>
-            Welcome
+        <div className={styles.user + " d-flex"}>
+          <span className='d-flex' >
+            <i className="fa fa-user" style={{marginRight:'20px'}}></i>
+          <Typography className='ml-4'>{userProfile?.fullName}</Typography>
           </span>
         </div>
       </div>

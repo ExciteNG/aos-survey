@@ -21,6 +21,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FacebookLogin from "react-facebook-login";
 // import SocialLoginComponent from "../../../../utility/SocialLoginComponent";
 import useAxios from "../../../../utility/axios-token-manager/init";
+import Flash from "../../../../utility/Flash";
 
 //
 export default function Form() {
@@ -106,15 +107,18 @@ export default function Form() {
       ...inputs,
       mobile: `${getCountryDial_Code(inputs.country)} ${inputs.mobile}`,
     };
-    console.log(data);
+    // console.log(data);
     try {
       const response = await useAxios.post(
         "/auth/influencer-marketer/sign-up",
         data
       );
+      if(response.data.code===401) return Flash('error','Email already in use','',3000);
+      if(response.data.code===201) return Flash('success','Account created successfully','',3000)
       console.log(response.data);
     } catch (error) {
       console.log(error);
+      return Flash('error','Network/Server error','',3000);
     }
   };
 

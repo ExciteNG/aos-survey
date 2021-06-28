@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getUserProfile } from "../../../redux/actions/profile";
 import styles from "./layout.module.css";
 import SideBar from "./SideBar";
 import ToolBar from "./ToolBar";
@@ -7,7 +9,14 @@ import ToolBar from "./ToolBar";
 export default function Layout({ children }) {
   const [open, setOpen] = useState(false);
   let sideBar = useRef(null);
+  // REDUX
+const dispatch = useDispatch()
+useEffect(()=>{
+dispatch(getUserProfile())
+},[])
 
+
+// 
   useEffect(() => {
     // handleSideBar();
     if (open) {

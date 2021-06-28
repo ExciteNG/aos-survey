@@ -1,18 +1,18 @@
 export  const navItems = [
    
     {
-      category: "Setup Bank Info",
+      category: "Profile",
       iClass:'bi bi-graph-up',
       url:"/services/affiliates/banking"
     },
     {
-      category: "My Earnings",
+      category: "Settings",
       iClass:'bi bi-briefcase-fill',
       url:"/services/affiliates"
 
     },
     {
-      category: "Deactivate Account",
+      category: "Chats",
       iClass:'bi bi-cash-stack',
       url:"/services/affiliates"
 
