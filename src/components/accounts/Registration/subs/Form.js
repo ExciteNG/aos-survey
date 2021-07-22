@@ -24,6 +24,7 @@ import useAxios from "../../../../utility/axios-token-manager/init";
 import Flash from "../../../../utility/Flash";
 import { loadStart,loadStop } from "../../../../redux/actions/loading";
 import { useDispatch } from "react-redux";
+import {allCategory} from "./category"
 //
 export default function Form() {
   const dispatch = useDispatch()
@@ -91,6 +92,7 @@ export default function Form() {
     noOfFollowers: {},
     influencerLevel: "",
     amountPerPost: "",
+    productServiceCategory:"",
     country: country,
     coverage: [],
     marketingSpeciality: [],
@@ -212,7 +214,23 @@ export default function Form() {
               ))}
             </TextField>
           </div>
-          <div className="col-lg-6"></div>
+          <div className="col-lg-6">
+          <TextField
+              label="Product/Service Category"
+              fullWidth
+              name="productServiceCategory"
+              autoComplete="Off"
+              value={inputs.productServiceCategory}
+              onChange={handleChange}
+              select
+              SelectProps={{
+                native: true,
+              
+              }}
+            >
+              {allCategory.map((item,index)=><option key={index}>{item}</option>)}
+            </TextField>
+          </div>
           <div className="col-lg-6 mb-3">
             <Typography>Coverage (where do your influence cover)</Typography>
             <List dense className="color-blur">
@@ -297,7 +315,7 @@ export default function Form() {
               ""
             )}
           </div>
-          <div className="col-lg-4">
+          <div className="col-lg-6">
             <TextField
               label="How much do you charge per post ?"
               fullWidth
@@ -337,6 +355,22 @@ export default function Form() {
                 })}
               </List>
             </div>
+          </div>
+          <div className="col-lg-6">
+          <TextField
+              label="Total number of followers ?"
+              fullWidth
+              select
+              name="influencerLevel"
+              autoComplete="Off"
+              value={inputs.influencerLevel}
+              onChange={handleChange}
+              SelectProps={{
+                native:true
+              }}
+            >
+              {["Micro","Midi","Maxi"].map(item=><option value={item}>{item}</option>)}
+            </TextField>
           </div>
         </div>
         <div className="row" style={{ marginTop: "20px" }}>
