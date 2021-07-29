@@ -95,7 +95,7 @@ export default function Form() {
     productServiceCategory:"",
     country: country,
     coverage: [],
-    marketingSpeciality: [],
+    marketingSpecialty: "",
     negotiable: negotiable,
     password: "",
     password2: "",
@@ -218,9 +218,9 @@ export default function Form() {
           <TextField
               label="Product/Service Category"
               fullWidth
-              name="productServiceCategory"
+              name="marketingSpecialty"
               autoComplete="Off"
-              value={inputs.productServiceCategory}
+              value={inputs.marketingSpecialty}
               onChange={handleChange}
               select
               SelectProps={{
