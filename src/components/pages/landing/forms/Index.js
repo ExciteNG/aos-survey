@@ -88,6 +88,9 @@ const handleDisabledNext=()=>{
               name="Name"
               value={inputs["Name"]}
               onChange={handleInputChange}
+              inputProps={{
+                maxLength:100
+              }}
             />
             <TextField
               label="Job Title"
@@ -97,7 +100,9 @@ const handleDisabledNext=()=>{
               name="Job Title"
               value={inputs["Job Title"]}
               onChange={handleInputChange}
-
+              inputProps={{
+                maxLength:100
+              }}
             />
             <TextField
               label="Company"
@@ -107,7 +112,9 @@ const handleDisabledNext=()=>{
               name="Company"
               value={inputs["Company"]}
               onChange={handleInputChange}
-
+              inputProps={{
+                maxLength:100
+              }}
             />
             <div>
               <FormControl sx={{ m: 3 }}>

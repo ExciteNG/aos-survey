@@ -44,7 +44,7 @@ export const Page2 = ({ changePage, updateResponse, page2R }) => {
   React.useState(()=>{
       setAnswered(page2R)
   },[page2R])
-  
+
   return (
     <section className="wrapper">
       <div className="container">
@@ -55,7 +55,7 @@ export const Page2 = ({ changePage, updateResponse, page2R }) => {
             <div>
                 <img src={logo} width="200px"  alt="logo"/>
               </div>
-              <p>
+              <p className="page-caption">
                 Part A: Knowledge of AOS Orwell’s Service and Products/ Customer
                 Satisfaction Survey (CSAT)
               </p>

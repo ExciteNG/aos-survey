@@ -84,7 +84,7 @@ const handleDisabledNext =()=>{
               <div>
                 <img src={logo} width="200px" alt="logo" />
               </div>
-              <p>Part B: Net Promoter Score (NPS)</p>
+              <p className="page-caption">Part B: Net Promoter Score (NPS)</p>
             </div>
             <div>
               {/* code here */}
@@ -148,6 +148,10 @@ const handleDisabledNext =()=>{
                   fullWidth
                   multiline
                   variant="outlined"
+                  helperText={`${pryReasonForScore.length} / 300`}
+                  inputProps={{
+                    maxLength:300
+                  }}
                 />
               </div>
             </div>
@@ -168,6 +172,10 @@ const handleDisabledNext =()=>{
                   fullWidth
                   multiline
                   variant="outlined"
+                  helperText={`${suggestion.length} / 500`}
+                  inputProps={{
+                    maxLength:500
+                  }}
                 />
               </div>
             </div>

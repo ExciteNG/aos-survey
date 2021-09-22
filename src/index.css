@@ -36,6 +36,9 @@ body {
   align-items: center;
   margin-bottom: 50px;
 }
+.intro .page-caption{
+  font-weight: 900;
+}
 .wrapper .intro p {
   width: 500px;
   max-width: 90vw;
