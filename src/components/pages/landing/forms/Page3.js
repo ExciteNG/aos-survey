@@ -38,8 +38,8 @@ export const Page3 = ({
       ...page1,
       Responses: [...page2],
       Score: recommend,
-      PRS: pryReasonForScore,
-      Suggestion: suggestion,
+      PRS: pryReasonForScore.trim(),
+      Suggestion: suggestion.trim(),
     };
     if (submitState) return alert("Submitted already");
     try {
@@ -65,8 +65,8 @@ export const Page3 = ({
   const handleBack = () => {
     updateResponse("Page 3", {
       Recommend: recommend,
-      PRS: pryReasonForScore,
-      Suggestion: suggestion,
+      PRS: pryReasonForScore.trim(),
+      Suggestion: suggestion.trim(),
     });
     changePage(2);
   };

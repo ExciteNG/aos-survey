@@ -60,7 +60,7 @@ const Index = ({changePage, updateResponse,page1}) => {
     changePage(2)
   }
 const handleDisabledNext=()=>{
-  if(!inputs.Company || !inputs["Job Title"] || !inputs.Name || state.length < 1) return true;
+  if(!inputs.Company.trim() || !inputs["Job Title"].trim() || !inputs.Name.trim() || state.length < 1) return true;
   return false;
 }
   return (
