@@ -70,15 +70,12 @@ export const Page3 = ({
   return (
     <section className="wrapper">
       <div className="container">
-        <img src={logo} width="120px" className="m-auto" alt="logo" />
-      </div>
-      <div className="container">
         <div className="row">
           <div className="col-lg-2" />
           <div className="col-lg-8">
             <div className="intro">
             <div>
-                <img src={logo} width="120px"  alt="logo"/>
+                <img src={logo} width="200px"  alt="logo"/>
               </div>
               <p>Part B: Net Promoter Score (NPS)</p>
             </div>

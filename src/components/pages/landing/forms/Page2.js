@@ -49,7 +49,7 @@ export const Page2 = ({ changePage, updateResponse }) => {
           <div className="col-lg-8">
             <div className="intro">
             <div>
-                <img src={logo} width="120px"  alt="logo"/>
+                <img src={logo} width="200px"  alt="logo"/>
               </div>
               <p>
                 Part A: Knowledge of AOS Orwell’s Service and Products/ Customer
@@ -115,7 +115,7 @@ export const Page2 = ({ changePage, updateResponse }) => {
               </Button>
               <Button
                 variant="outlined"
-                // disabled={answered.length < 10}
+                disabled={answered.length !== 10}
                 className="ml-auto"
                 style={{ textTransform: "none" }}
                 onClick={() => handleNext()}

@@ -14,7 +14,7 @@ export const Index = ({ page, changePage }) => {
     <React.Fragment>
       <section className="onboarding">
         <div className="container">
-          <img src={logo} width="120px" alt="logo" />
+          <img src={logo} width="200px" alt="logo" />
         </div>
         <div className="container contents">
             <div>

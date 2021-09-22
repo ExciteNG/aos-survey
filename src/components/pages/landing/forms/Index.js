@@ -18,7 +18,7 @@ import { changeTab, updateResponse } from "../../../../redux/actions/profile";
 const Index = ({changePage, updateResponse,page1}) => {
   // console.log(process.env.REACT_APP_TEST_VAR)
 
-  console.log(changePage)
+  // console.log(changePage)
   const [state, setState] = React.useState([]);
 
   const [inputs, setInputs] = React.useState({
@@ -59,7 +59,10 @@ const Index = ({changePage, updateResponse,page1}) => {
     updateResponse("Page 1",{...inputs,"SRR":state});
     changePage(2)
   }
-
+const handleDisabledNext=()=>{
+  if(!inputs.Company || !inputs["Job Title"] || !inputs.Name || state.length < 1) return true;
+  return false;
+}
   return (
     //
     <section className="wrapper">
@@ -69,7 +72,7 @@ const Index = ({changePage, updateResponse,page1}) => {
           <div className="col-lg-8">
             <div className="intro">
               <div>
-                <img src={logo} width="120px"  alt="logo"/>
+                <img src={logo} width="200px"  alt="logo"/>
               </div>
               <p>
                 At AOS Orwell, we use your feedback to improve the quality of
@@ -133,7 +136,7 @@ const Index = ({changePage, updateResponse,page1}) => {
               </FormControl>
             </div>
             <div className="first-page-btn">
-              <Button variant="outlined" disabled={false} className="ml-auto" style={{textTransform:'none'}} onClick={()=>handleNext()}>
+              <Button variant="outlined" disabled={handleDisabledNext()} className="ml-auto" style={{textTransform:'none'}} onClick={()=>handleNext()}>
                 Next
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
