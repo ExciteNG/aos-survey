@@ -30,7 +30,7 @@ export const Index = ({ page, changePage }) => {
                   complete this survey.
                 </Typography>
                 <Typography variant="caption" className="mt-2">
-                (Estimated time to complete: 15 minutes)
+                (Estimated time to complete: 3 minutes)
                 </Typography>
                 <Link className="onboarding-cta-wrapper" to="/start">
                   <Button>Start</Button>
