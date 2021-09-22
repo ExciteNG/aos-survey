@@ -12,7 +12,7 @@ import { changeTab, updateResponse } from "../../../../redux/actions/profile";
 import { page_2 } from "../../../asset/js/data";
 import logo from "../../../asset/img/logo.png";
 //
-export const Page2 = ({ changePage, updateResponse }) => {
+export const Page2 = ({ changePage, updateResponse, page2R }) => {
   const [answered, setAnswered] = React.useState([]);
 
   const handleChange = (num, evt) => {
@@ -41,6 +41,10 @@ export const Page2 = ({ changePage, updateResponse }) => {
     // updateResponse("Page 1",{...inputs,"SSR":state});
     changePage(1);
   };
+  React.useState(()=>{
+      setAnswered(page2R)
+  },[page2R])
+  
   return (
     <section className="wrapper">
       <div className="container">
@@ -146,7 +150,7 @@ export const Page2 = ({ changePage, updateResponse }) => {
 
 const mapStateToProps = (state) => ({
   page: state.profile?.page,
-  page2: state.profile["Page 2"]
+  page2R: state.profile["Page 2"]
 });
 
 const mapDispatchToProps = (dispatch) => {

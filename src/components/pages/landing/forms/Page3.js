@@ -10,6 +10,7 @@ import { Button, TextField, Typography } from "@material-ui/core";
 import logo from "../../../asset/img/logo.png";
 import useAxios from "../../../../utility/axios-token-manager/init";
 import { loadStart, loadStop } from "../../../../redux/actions/loading";
+import Flash from "../../../../utility/Flash";
 //
 export const Page3 = ({
   changePage,
@@ -52,7 +53,9 @@ export const Page3 = ({
       }
       // console.log(response);
     } catch (error) {
-      console.log(error);
+      isNotSubmitting();
+      Flash("error", "Server / Network error", "", 3000);
+      // console.log(error);
     }
     // console.log(data);
     // updateResponse("Page 2", answered);
@@ -66,7 +69,10 @@ export const Page3 = ({
     });
     changePage(2);
   };
-
+const handleDisabledNext =()=>{
+  if(!recommend || !pryReasonForScore) return true;
+  return false
+}
   return (
     <section className="wrapper">
       <div className="container">
@@ -74,8 +80,8 @@ export const Page3 = ({
           <div className="col-lg-2" />
           <div className="col-lg-8">
             <div className="intro">
-            <div>
-                <img src={logo} width="200px"  alt="logo"/>
+              <div>
+                <img src={logo} width="200px" alt="logo" />
               </div>
               <p>Part B: Net Promoter Score (NPS)</p>
             </div>
@@ -189,12 +195,12 @@ export const Page3 = ({
               </Button>
               <Button
                 variant="outlined"
-                // disabled={answered.length < 10}
+                disabled={handleDisabledNext()}
                 className="ml-auto"
                 style={{ textTransform: "none" }}
                 onClick={() => handleNext()}
               >
-                Next
+                Submit
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
