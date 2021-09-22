@@ -4,7 +4,7 @@ const initialState={
     page:1,
     profile:{"Name":"","Company":"","SRR":[]},
     "Page 1":{"Name":"","Company":"","SRR":[]},
-    "Page 2":{},
+    "Page 2":[],
     "Page 3":{"Recommend":"","PRS":"","Suggestion":""},
     submitStatus:false
 }
