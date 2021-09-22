@@ -21,7 +21,7 @@ function FallBack (){
   return(
     <div className="fall-back-wrapper">
       <div>
-        <img src={spinner} />
+        <img src={spinner} alt="spinner"/>
       </div>
     </div>
   )
