@@ -46,12 +46,13 @@ export const Page3 = ({
       isSubmitting();
       const response = await useAxios.post("/api/survey/new-response", data);
       isNotSubmitting();
-      if (response.status === 201) {
+      if (response.data?.code === 201) {
         status(true);
         changePage(4);
+        return ;
         // alert("Survey submitted");
       }
-      // console.log(response);
+      // console.log(response.data);
     } catch (error) {
       isNotSubmitting();
       Flash("error", "Server / Network error", "", 3000);
@@ -70,7 +71,7 @@ export const Page3 = ({
     changePage(2);
   };
 const handleDisabledNext =()=>{
-  if(!recommend || !pryReasonForScore) return true;
+  if(!recommend) return true;
   return false
 }
   return (
