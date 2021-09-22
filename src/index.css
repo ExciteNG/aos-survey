@@ -1,13 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.wrapper {
+  /* background-color: red; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  padding: 50px 0;
+}
+.wrapper .container {
+  /* background-color: blue; */
+}
+.wrapper .intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.wrapper .intro p {
+  width: 500px;
+  max-width: 90vw;
+  text-align: center;
+}
+.first-page-btn {
+  margin: 40px 0 20px 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.two-cta {
+  justify-content: space-between !important;
+}
+.first-page-btn button {
+  background-color: rgba(46, 131, 40, 0.8);
+  color: white;
+}
+.first-page-btn button:hover {
+  background-color: rgba(46, 131, 40, 1);
+}
+.first-page-btn button:disabled {
+  background-color: antiquewhite;
+}
+
+.extreme-lg {
+  display: none;
+}
+.active {
+  background-color: rgba(46, 131, 40, 0.5) !important;
+}
+
+.onboarding {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+}
+.onboarding .contents{
+  /* background-color: blue; */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px 0;
+}
+/* Mobile first */
+.onboarding .onboarding-text-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.onboarding .onboarding-text-wrapper p{
+  text-align: center;
+}
+.onboarding .onboarding-cta-wrapper{
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.onboarding .onboarding-text-wrapper h1{
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.onboarding .onboarding-cta-wrapper button{
+  background-color: rgba(46, 131, 40, 1) ;
+  width: 300px;
+  max-width: 70vw;
+  color: white;
+}
+.onboarding .onboarding-text-wrapper h1 span{
+  color: rgba(46, 131, 40, 1);
+}
+
+.onboarding .onboarding-img-wrapper{
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+.acknowledgement-cta-wrapper{
+  margin-top:50px;
+  text-decoration: none;
+}
+.acknowledgement-cta-wrapper button{
+  background-color: rgba(46, 131, 40, 0.8);
+  color: white;
+  width: 200px;
+  max-width: 80vw;
+}
+.acknowledgement-cta-wrapper button:hover{
+  background-color: rgba(46, 131, 40, 1);
+}
+@media screen and (min-width: 1200px) {
+  .extreme-md {
+    display: none;
+  }
+  .extreme-lg {
+    display: inline;
+  }
+  .recommend-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media screen  and (min-width:990px){
+  .onboarding .onboarding-img-wrapper{
+    margin-top: 0;
+  }
+  .onboarding .onboarding-text-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+.onboarding .onboarding-text-wrapper h1{
+  font-size: 62px;
+}
+  .onboarding .onboarding-text-wrapper p{
+    text-align: left;
+  }
 }
