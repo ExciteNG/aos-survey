@@ -42,7 +42,7 @@ export const Page2 = ({ changePage, updateResponse, page2R }) => {
     changePage(1);
   };
   React.useState(()=>{
-    if(page2R.length > 0){
+    if(page2R?.length > 0){
       setAnswered(page2R)
     }
   },[page2R])
