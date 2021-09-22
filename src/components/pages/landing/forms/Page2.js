@@ -38,11 +38,13 @@ export const Page2 = ({ changePage, updateResponse, page2R }) => {
     changePage(3);
   };
   const handleBack = () => {
-    // updateResponse("Page 1",{...inputs,"SSR":state});
+    updateResponse("Page 2",answered);
     changePage(1);
   };
   React.useState(()=>{
+    if(page2R.length > 0){
       setAnswered(page2R)
+    }
   },[page2R])
 
   return (
